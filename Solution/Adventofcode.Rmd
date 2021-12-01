@@ -1,0 +1,28 @@
+---
+title: "Advent of Code 2021"
+author: "Belay Birlie"
+date: "01/12/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Day 1: Sonar Sweep
+
+The puzzle for Day - 1 of the [advent of code](https://adventofcode.com/2021/) for 2021 is to count the number of times a given measurement increases from the previous measurement. The measurents are 1 dimenional vector.  
+```{r housekeeping}
+
+library(here)
+here::i_am("Solution/Adventofcode.Rmd")
+
+```
+
+Let's first read the data. I saved the text file in the *data* folder and package *here* makes it easy for me to find the the data. I will use the base function diff with the defult parameter setting, that is lag = 1 
+
+```{r day1_puzzle}
+mmeasurement<-as.integer(readLines(here("data/measurement_day1.txt")))
+sum(diff(measurement)>0)
+
+```
