@@ -26,3 +26,10 @@ mmeasurement<-as.integer(readLines(here("data/measurement_day1.txt")))
 sum(diff(measurement)>0)
 
 ```
+
+The second part of the puzzle consider sums of a three-measurement sliding window and the goal is to count the number of times the sum of measurements in this sliding window increases from the previous sum. I will use *zoo* package to solve this 
+
+```{r day1_puzzle}
+sum(diff(zoo::rollapply(measurement))>0)
+
+```
