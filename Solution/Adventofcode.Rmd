@@ -33,3 +33,35 @@ The second part of the puzzle consider sums of a three-measurement sliding windo
 sum(diff(zoo::rollapply(mmeasurement, 3, sum))>0)
 
 ```
+
+## Day 2
+
+The submarine seems to already have a planned course (your puzzle input). You should probably figure out where it's going. For example:
+
+  - forward 5
+  - down 5
+  - forward 8
+  - up 3
+  - down 8
+  - forward 2
+
+Your horizontal position and depth both start at 0. The steps above would then modify them as follows:
+
+forward 5 adds 5 to your horizontal position, a total of 5.
+down 5 adds 5 to your depth, resulting in a value of 5.
+forward 8 adds 8 to your horizontal position, a total of 13.
+up 3 decreases your depth by 3, resulting in a value of 2.
+down 8 adds 8 to your depth, resulting in a value of 10.
+forward 2 adds 2 to your horizontal position, a total of 15.
+After following these instructions, you would have a horizontal position of 15 and a depth of 10. (Multiplying these together produces 150.)
+
+Calculate the horizontal position and depth you would have after following the planned course. What do you get if you multiply your final horizontal position by your final depth?
+
+```{r day2_puzzle2}
+
+library(data.table)
+day2<-readLines(here("data/day2.txt"))
+day2<-setDT(day2)[, paste0("v", 1:2) := tstrsplit(day2, " ")]
+(sum(day2$v2[day2$v1 == "down"]) - sum(day2$v2[day2$v1 == "up"]))*sum(day2$v2[day2$v1 == "forward"])
+
+```
